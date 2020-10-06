@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// sources interfaces implementations.
 class SourcesModule implements Module {
   // Debug option to use local running servers
-  static const _useLocalEndpoints = false;
+  static const _useLocalEndpoints = true;
 
   final Database accountDatabase;
   final Database postsDatabase;
@@ -34,18 +34,18 @@ class SourcesModule implements Module {
   void configure(Binder binder) {
     // Endpoint to the Desmos chain REST APIs
     final _lcdUrl = _useLocalEndpoints
-        ? 'http://10.0.2.2:1317'
+        ? 'http://39.96.38.142:8545'
         : 'http://lcd.morpheus.desmos.network:1317';
 
     // GraphQL client
     final _gqlClient = GraphQLClient(
       link: HttpLink(
         uri: _useLocalEndpoints
-            ? 'http://10.0.2.2:8080/v1/graphql'
+            ? 'http://39.96.38.142:8003/v1/graphql'
             : 'https://gql.morpheus.desmos.network/v1/graphql',
       ).concat(WebSocketLink(
         url: _useLocalEndpoints
-            ? 'ws://10.0.2.2:8080/v1/graphql'
+            ? 'ws://39.96.38.142:8003/v1/graphql'
             : 'wss://gql.morpheus.desmos.network/v1/graphql',
       )),
       cache: InMemoryCache(),

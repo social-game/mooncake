@@ -18,7 +18,7 @@ class Constants {
   static const FEE_ACCOUNT_EDIT = 200000; // 0.20 per account edit
 
   // Token denom that should be used to pay for fees
-  static const FEE_TOKEN = 'udaric';
+  static const FEE_TOKEN = 'desmos';
 
   // Analytics constants
   static const EVENT_ACCOUNT_RECOVERED = 'account_recovered';
