@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mooncake/ui/screens/post_create_screen/widgets/create_post_content/widgets/post_game_creator/widgets/game_end_date_editor/index.dart';
+import 'package:mooncake/ui/screens/post_create_screen/widgets/create_post_content/widgets/post_game_creator/widgets/game_option_editor/index.dart';
 
 import '../../../../blocs/export.dart';
-import '../post_poll_creator/widgets/export.dart';
 
 class PostGameCreator extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class PostGameCreator extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return PollOptionEditor(
+                  return GameOptionEditor(
                     option: state.game.options[index],
                   );
                 },
@@ -31,6 +32,8 @@ class PostGameCreator extends StatelessWidget {
                   );
                 },
                 itemCount: optionsLength),
+            SizedBox(height: optionsLength < 5 ? 10 : 30),
+            GameEndDateEditor(),
           ],
         );
       },

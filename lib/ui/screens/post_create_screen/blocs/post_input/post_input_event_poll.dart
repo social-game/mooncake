@@ -33,6 +33,26 @@ class DeletePollOption extends PostInputPollEvent {
   List<Object> get props => [index];
 }
 
+class UpdateGameOption extends PostInputPollEvent {
+  final int index;
+  final String option;
+
+  UpdateGameOption(this.index, this.option);
+
+  @override
+  List<Object> get props => [index, option];
+}
+
+/// Tells the Bloc that the option at the given index should be deleted.
+class DeleteGameOption extends PostInputPollEvent {
+  final int index;
+
+  DeleteGameOption(this.index);
+
+  @override
+  List<Object> get props => [index];
+}
+
 /// Tells the Bloc that a new option should be added to the poll.
 class AddPollOption extends PostInputPollEvent {}
 
@@ -42,6 +62,15 @@ class ChangePollDate extends PostInputPollEvent {
   final DateTime endDate;
 
   ChangePollDate(this.endDate);
+
+  @override
+  List<Object> get props => [endDate];
+}
+
+class ChangeGameDate extends PostInputPollEvent {
+  final DateTime endDate;
+
+  ChangeGameDate(this.endDate);
 
   @override
   List<Object> get props => [endDate];

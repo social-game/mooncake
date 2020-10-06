@@ -166,6 +166,17 @@ class PostInputBloc extends Bloc<PostInputEvent, PostInputState> {
       // Update the state
       final poll = state.poll.copyWith(options: options);
       yield state.copyWith(poll: poll);
+    } else if (event is UpdateGameOption) {
+      // Update the option
+      final options = state.game.options.map((option) {
+        return option.id == event.index
+            ? option.copyWith(text: event.option)
+            : option;
+      }).toList();
+
+      // Update the state
+      final game = state.game.copyWith(options: options);
+      yield state.copyWith(game: game);
     } else if (event is AddPollOption) {
       // Add the option
       final options = state.poll.options +
@@ -187,9 +198,25 @@ class PostInputBloc extends Bloc<PostInputEvent, PostInputState> {
       // Update the state
       final poll = state.poll.copyWith(options: options);
       yield state.copyWith(poll: poll);
+    } else if (event is DeleteGameOption) {
+      // Delete the option
+      var options = <PollOption>[...state.game.options];
+      options = options.where((option) => option.id != event.index).toList();
+
+      // Update the options indexes
+      for (var i = 0; i < options.length; i++) {
+        options[i] = options[i].copyWith(index: i);
+      }
+
+      // Update the state
+      final game = state.game.copyWith(options: options);
+      yield state.copyWith(game: game);
     } else if (event is ChangePollDate) {
       final poll = state.poll.copyWith(endDate: event.endDate);
       yield state.copyWith(poll: poll);
+    } else if (event is ChangeGameDate) {
+      final game = state.game.copyWith(endDate: event.endDate);
+      yield state.copyWith(game: game);
     }
   }
 
