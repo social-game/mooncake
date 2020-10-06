@@ -11,6 +11,7 @@ import 'package:mooncake/entities/entities.dart';
 import 'package:mooncake/ui/ui.dart';
 import 'package:mooncake/usecases/usecases.dart';
 
+import '../export.dart';
 import 'export.dart';
 
 /// Implementation of [Bloc] that allows to deal with [PostInputEvent]
@@ -134,9 +135,19 @@ class PostInputBloc extends Bloc<PostInputEvent, PostInputState> {
       yield state.copyWith(poll: state.poll ?? PostPoll.empty());
     } else if (event is TogglePollDisplay) {
       if (state.poll == null) {
-        yield state.copyWith(poll: PostPoll.empty());
+        var poll = state.copyWith(poll: PostPoll.empty());
+        yield poll;
       } else {
-        yield state.removePoll();
+        var poll = state.removePoll();
+        yield poll;
+      }
+    } else if (event is ToggleGameDisplay) {
+      if (state.game == null) {
+        var game = state.copyWith(game: PostPoll.empty());
+        yield game;
+      } else {
+        var game = state.removePoll();
+        yield game;
       }
     } else if (event is UpdatePollOption) {
       // Update the option

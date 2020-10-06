@@ -27,7 +27,7 @@ class CreatePostContent extends StatelessWidget {
         return SafeArea(
           child: Column(
             children: <Widget>[
-              CreatePostTopBar(),
+              CreatePostTopBar(), // 标题工具栏
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.only(

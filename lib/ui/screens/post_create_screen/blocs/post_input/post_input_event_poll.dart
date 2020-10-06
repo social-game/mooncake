@@ -9,6 +9,9 @@ class CreatePoll extends PostInputPollEvent {}
 /// Tells the bloc to toggle the poll display
 class TogglePollDisplay extends PostInputPollEvent {}
 
+/// Tells the bloc to toggle the game display
+class ToggleGameDisplay extends PostInputPollEvent {}
+
 /// Tells the Bloc that the question at the given index should be updated.
 class UpdatePollOption extends PostInputPollEvent {
   final int index;

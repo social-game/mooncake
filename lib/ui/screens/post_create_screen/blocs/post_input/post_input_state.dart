@@ -12,21 +12,22 @@ class PostInputState extends Equatable {
   final bool allowsComments;
   final List<PostMedia> medias;
   final PostPoll poll;
+  final PostPoll game;
 
   final bool showPopup;
   final bool saving;
   final bool willShowPopupAgain;
 
-  PostInputState({
-    @required this.parentPost,
-    @required this.message,
-    @required this.allowsComments,
-    @required this.medias,
-    @required this.poll,
-    @required this.saving,
-    @required this.showPopup,
-    @required this.willShowPopupAgain,
-  });
+  PostInputState(
+      {@required this.parentPost,
+      @required this.message,
+      @required this.allowsComments,
+      @required this.medias,
+      @required this.poll,
+      @required this.saving,
+      @required this.showPopup,
+      @required this.willShowPopupAgain,
+      this.game});
 
   bool get isValid {
     return message?.trim()?.isNotEmpty == true ||
@@ -37,6 +38,8 @@ class PostInputState extends Equatable {
   bool get hasPoll {
     return poll != null;
   }
+
+  bool get hasGame => game != null;
 
   bool get _isPollValid {
     return poll != null &&
@@ -66,15 +69,15 @@ class PostInputState extends Equatable {
   // Removes poll state
   PostInputState removePoll() {
     return PostInputState(
-      parentPost: parentPost,
-      message: message,
-      allowsComments: allowsComments,
-      medias: medias,
-      poll: null,
-      saving: saving,
-      showPopup: showPopup,
-      willShowPopupAgain: willShowPopupAgain,
-    );
+        parentPost: parentPost,
+        message: message,
+        allowsComments: allowsComments,
+        medias: medias,
+        poll: null,
+        saving: saving,
+        showPopup: showPopup,
+        willShowPopupAgain: willShowPopupAgain,
+        game: null);
   }
 
   /// Updates this state setting the specified values properly.
@@ -83,6 +86,7 @@ class PostInputState extends Equatable {
     bool allowsComments,
     List<PostMedia> medias,
     PostPoll poll,
+    PostPoll game,
     bool showPopup,
     bool saving,
     bool willShowPopupAgain,
@@ -94,6 +98,7 @@ class PostInputState extends Equatable {
       saving: saving ?? this.saving,
       medias: medias ?? this.medias,
       poll: poll ?? this.poll,
+      game: game ?? this.game,
       showPopup: showPopup ?? this.showPopup,
       willShowPopupAgain: willShowPopupAgain ?? this.willShowPopupAgain,
     );

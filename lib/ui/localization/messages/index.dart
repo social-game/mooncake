@@ -171,6 +171,8 @@ class Messages {
       'createPostDisableCommentsButtonHint';
   static String get createPostCreatePollButtonHint =>
       'createPostCreatePollButtonHint';
+  static String get createPostCreateGameButtonHint =>
+      'createPostCreateGameButtonHint';
   static String get createPostCancelButton => 'createPostCancelButton';
   static String get createPostCreateButton => 'createPostCreateButton';
   static String get createPostHint => 'createPostHint';

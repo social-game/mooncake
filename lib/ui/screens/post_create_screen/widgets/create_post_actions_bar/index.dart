@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mooncake/ui/ui.dart';
 import 'package:mooncake/ui/screens/post_create_screen/blocs/export.dart';
 
+import '../../blocs/export.dart';
+
 /// Represents the bar containing the actions that can be taken from
 /// the post editor.
 class PostCreateActions extends StatelessWidget {
@@ -34,18 +36,18 @@ class PostCreateActions extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    IconButton(
-                      tooltip: PostsLocalizations.of(context)
-                          .translate(Messages.galleryTip),
-                      icon: Icon(MooncakeIcons.picture),
-                      onPressed: () => _pickImage(context, ImageSource.gallery),
-                    ),
-                    IconButton(
-                      tooltip: PostsLocalizations.of(context)
-                          .translate(Messages.cameraTip),
-                      icon: Icon(MooncakeIcons.camera),
-                      onPressed: () => _pickImage(context, ImageSource.camera),
-                    ),
+                    // IconButton(
+                    //   tooltip: PostsLocalizations.of(context)
+                    //       .translate(Messages.galleryTip),
+                    //   icon: Icon(MooncakeIcons.picture),
+                    //   onPressed: () => _pickImage(context, ImageSource.gallery),
+                    // ),
+                    // IconButton(
+                    //   tooltip: PostsLocalizations.of(context)
+                    //       .translate(Messages.cameraTip),
+                    //   icon: Icon(MooncakeIcons.camera),
+                    //   onPressed: () => _pickImage(context, ImageSource.camera),
+                    // ),
                     IconButton(
                       tooltip: state.allowsComments
                           ? PostsLocalizations.of(context).translate(
@@ -59,13 +61,23 @@ class PostCreateActions extends StatelessWidget {
                     ),
                     IconButton(
                       tooltip: PostsLocalizations.of(context)
+                          .translate(Messages.createPostCreateGameButtonHint),
+                      icon: Icon(
+                        Icons.videogame_asset,
+                        color:
+                            state.game != null ? Colors.blue : Colors.black54,
+                      ),
+                      onPressed: () => _createGame(context),
+                    ),
+                    IconButton(
+                      tooltip: PostsLocalizations.of(context)
                           .translate(Messages.createPostCreatePollButtonHint),
                       icon: Icon(
                         MooncakeIcons.poll,
                         color: pollSelectedColor,
                       ),
                       onPressed: () => _createPoll(context),
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -90,5 +102,9 @@ class PostCreateActions extends StatelessWidget {
 
   void _createPoll(BuildContext context) {
     BlocProvider.of<PostInputBloc>(context).add(TogglePollDisplay());
+  }
+
+  void _createGame(BuildContext context) {
+    BlocProvider.of<PostInputBloc>(context).add(ToggleGameDisplay());
   }
 }

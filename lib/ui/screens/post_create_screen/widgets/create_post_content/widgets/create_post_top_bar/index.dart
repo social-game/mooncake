@@ -17,13 +17,14 @@ class CreatePostTopBar extends StatelessWidget {
             leading: FlatButton(
               padding: EdgeInsets.zero,
               child: Text(
+                // Cancel按钮
                 PostsLocalizations.of(context)
                     .translate(Messages.createPostCancelButton),
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                       color: Theme.of(context).appBarTheme.iconTheme.color,
                     ),
               ),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Navigator.of(context).pop(), // 弹出框
             ),
             actions: <Widget>[
               SizedBox(
@@ -31,12 +32,14 @@ class CreatePostTopBar extends StatelessWidget {
                 child: PrimaryButton(
                   enabled: state.isValid,
                   child: Text(
+                    // Post按钮
                     PostsLocalizations.of(context)
                         .translate(Messages.createPostCreateButton),
                   ),
                   borderRadius: 25,
                   onPressed: () {
-                    BlocProvider.of<PostInputBloc>(context).add(SavePost());
+                    BlocProvider.of<PostInputBloc>(context)
+                        .add(SavePost()); //输入消息
                   },
                 ),
               ),

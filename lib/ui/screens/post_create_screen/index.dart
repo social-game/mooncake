@@ -32,10 +32,11 @@ class CreatePostScreen extends StatelessWidget {
                     bottomPadding: bottomBarHeight,
                   ),
                   Positioned(
+                    //底部工具栏目
                     bottom: 0,
                     child: PostCreateActions(height: bottomBarHeight),
                   ),
-                  if (state.showPopup)
+                  if (state.showPopup) // 保存的弹窗《应该是》
                     GenericPopup(
                       content: PostSavingPopupContent(),
                       onTap: () {

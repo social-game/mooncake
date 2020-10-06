@@ -111,6 +111,7 @@
   "createPostEnableCommentsButtonHint": "Comments to this post will be disabled. Tap to enable them",
   "createPostDisableCommentsButtonHint": "Comments to this post will be enabled. Tap to disable them",
   "createPostCreatePollButtonHint": "Add poll",
+  "createPostCreateGameButtonHint": "Add game",
   "createPostCancelButton": "Cancel",
   "createPostCreateButton": "Post",
   "createPostHint": "What's on your mind?",
