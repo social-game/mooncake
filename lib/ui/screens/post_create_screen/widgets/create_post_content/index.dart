@@ -5,6 +5,7 @@ import 'package:mooncake/ui/screens/post_create_screen/blocs/export.dart';
 import 'package:mooncake/ui/ui.dart';
 
 import 'widgets/export.dart';
+import 'widgets/export.dart';
 
 /// Contains the main content of the post creation screen.
 /// Such content includes a top bar and the [TextFormField] inside which
@@ -40,6 +41,7 @@ class CreatePostContent extends StatelessWidget {
                     _postTextInput(context, state),
                     if (state.medias.isNotEmpty) _imagesPreview(),
                     if (state.poll != null) _pollCreator(),
+                    if (state.game != null) _gameCreator(),
                   ],
                 ),
               )
@@ -113,6 +115,16 @@ class CreatePostContent extends StatelessWidget {
       children: [
         const SizedBox(height: 16),
         PostPollCreator(),
+      ],
+    );
+  }
+
+  Widget _gameCreator() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 16),
+        PostGameCreator(),
       ],
     );
   }

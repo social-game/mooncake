@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mooncake/entities/entities.dart';
+import 'package:mooncake/entities/posts/polls/post_game.dart';
 
 /// Represents the current state of a [CommentForm] while the user
 /// is creating a new comment for a post.
@@ -12,7 +13,7 @@ class PostInputState extends Equatable {
   final bool allowsComments;
   final List<PostMedia> medias;
   final PostPoll poll;
-  final PostPoll game;
+  final PostGame game;
 
   final bool showPopup;
   final bool saving;
@@ -80,25 +81,45 @@ class PostInputState extends Equatable {
         game: null);
   }
 
+  // Removes poll state
+  PostInputState removeGame() {
+    return PostInputState(
+        parentPost: parentPost,
+        message: message,
+        allowsComments: allowsComments,
+        medias: medias,
+        poll: null,
+        saving: saving,
+        showPopup: showPopup,
+        willShowPopupAgain: willShowPopupAgain,
+        game: null);
+  }
+
   /// Updates this state setting the specified values properly.
   PostInputState copyWith({
     String message,
     bool allowsComments,
     List<PostMedia> medias,
     PostPoll poll,
-    PostPoll game,
+    PostGame game,
     bool showPopup,
     bool saving,
     bool willShowPopupAgain,
   }) {
+    if (poll != null) {
+      game = null;
+    }
+    if (game != null) {
+      poll = null;
+    }
     return PostInputState(
       parentPost: parentPost,
       message: message ?? this.message,
       allowsComments: allowsComments ?? this.allowsComments,
       saving: saving ?? this.saving,
       medias: medias ?? this.medias,
-      poll: poll ?? this.poll,
-      game: game ?? this.game,
+      poll: poll, //?? this.poll,
+      game: game, //?? this.game,
       showPopup: showPopup ?? this.showPopup,
       willShowPopupAgain: willShowPopupAgain ?? this.willShowPopupAgain,
     );
@@ -111,6 +132,7 @@ class PostInputState extends Equatable {
         allowsComments,
         medias,
         poll,
+        game,
         saving,
         showPopup,
         willShowPopupAgain,

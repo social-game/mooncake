@@ -8,9 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:mooncake/dependency_injection/dependency_injection.dart';
 import 'package:mooncake/entities/entities.dart';
+import 'package:mooncake/entities/posts/polls/post_game.dart';
 import 'package:mooncake/ui/ui.dart';
 import 'package:mooncake/usecases/usecases.dart';
 
+import '../../../../../entities/entities.dart';
 import '../export.dart';
 import 'export.dart';
 
@@ -135,19 +137,23 @@ class PostInputBloc extends Bloc<PostInputEvent, PostInputState> {
       yield state.copyWith(poll: state.poll ?? PostPoll.empty());
     } else if (event is TogglePollDisplay) {
       if (state.poll == null) {
-        var poll = state.copyWith(poll: PostPoll.empty());
-        yield poll;
+        var s = state.copyWith(poll: PostPoll.empty());
+        print('---->${s.hashCode}');
+        yield s;
       } else {
-        var poll = state.removePoll();
-        yield poll;
+        var s = state.removePoll();
+        print('---->${s.hashCode}');
+        yield s;
       }
     } else if (event is ToggleGameDisplay) {
       if (state.game == null) {
-        var game = state.copyWith(game: PostPoll.empty());
-        yield game;
+        var s = state.copyWith(game: PostGame.empty());
+        print('---->${s.hashCode}');
+        yield s;
       } else {
-        var game = state.removePoll();
-        yield game;
+        var s = state.removePoll();
+        print('---->${s.hashCode}');
+        yield s;
       }
     } else if (event is UpdatePollOption) {
       // Update the option
