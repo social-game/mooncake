@@ -189,6 +189,9 @@ class Messages {
   static String get pollEndDateText => 'pollEndDateText';
   static String get pollDeleteOptionHint => 'pollDeleteOptionHint';
 
+// game creation
+  static String get gameEndDateText => 'gameEndDateText';
+
   // Poll visualization
   static String get votes => 'votes';
   static String get pollEndOn => 'pollEndOn';

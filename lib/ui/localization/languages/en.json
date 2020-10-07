@@ -124,6 +124,7 @@
   "pollOptionHint": "Choice",
   "pollAddOptionButton": "Add option",
   "pollEndDateText": "This poll will end on",
+  "gameEndDateText": "This game will end on",
   "pollDeleteOptionHint": "Delete option",
   "votes": "votes",
   "pollEndOn": "Poll will end on",

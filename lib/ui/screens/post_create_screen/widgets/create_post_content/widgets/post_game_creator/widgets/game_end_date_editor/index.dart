@@ -26,7 +26,7 @@ class GameEndDateEditor extends StatelessWidget {
                   Expanded(
                     child: Text(
                       PostsLocalizations.of(context)
-                          .translate(Messages.pollEndDateText),
+                          .translate(Messages.gameEndDateText),
                       style: Theme.of(context).inputDecorationTheme.hintStyle,
                     ),
                   ),
